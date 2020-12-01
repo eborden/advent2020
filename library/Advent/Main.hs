@@ -4,13 +4,14 @@ module Advent.Main
 where
 
 import Advent.Prelude
+import qualified Advent.Day1 as Day1
 
 main :: IO ()
 main = do
   day <- parseDay
-  part <- parsePart
+  _part <- parsePart
   case day of
-    1 -> error "day 1"
+    1 -> Day1.main
     _
       | day <= 25 -> usage "Day not implemented yet"
       | otherwise -> usage "Day out of range"
