@@ -1,7 +1,7 @@
-module Advent.Day1 (part1, part2) where
+module Advent.Day1 where
 
 import Advent.Prelude
-import Data.List (tails, head)
+import Data.List (head)
 
 -- | A brute force solution
 -- 
@@ -21,17 +21,17 @@ readInts = fmap (read @Int . unpack) . lines . pack <$> getContents
 find2020 :: [[Int]] -> [Int]
 find2020 =  head . dropWhile ((/= 2020) . sum)
 
-pairs :: [a] -> [[a]]
+pairs :: Eq a => [a] -> [[a]]
 pairs xs = do
     x <- xs
-    ys <- tails xs
-    y <- ys
+    y <- drop 1 xs
+    guard $ x /= y
     pure [x, y]
 
-triads :: [a] -> [[a]]
+triads :: Eq a => [a] -> [[a]]
 triads xs = do
     x <- xs
-    ys <- tails xs
-    y <- ys
-    z <- drop 1 ys
+    y <- drop 1 xs
+    z <- drop 2 xs
+    guard $ x /= y && y /= z && x /= z
     pure [x, y, z]
