@@ -3,6 +3,7 @@
 module Advent.Day2 where
 
 import Advent.Prelude hiding (takeWhile)
+import Data.Bits (xor)
 import Data.Text (index)
 import qualified Data.Text as Text
 import Data.Attoparsec.Text
@@ -41,10 +42,7 @@ tobogganValidate entry@Entry{policy = Policy{range = (pred -> i, pred -> j), let
   len = Text.length password
   matchIndicies 
     | len <= i || len <= j = False
-    | otherwise =
-        let passI = index password i == letter
-            passJ = index password j == letter
-        in passI /= passJ && (passI || passJ)
+    | otherwise = xor (index password i == letter) (index password j == letter)
 
 data Entry = Entry
     { policy :: Policy
