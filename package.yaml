@@ -1,11 +1,11 @@
 ---
 name: advent2020
 version: 0.1.0.0
-github: "cdparks/advent2020"
+github: "eborden/advent2020"
 license: BSD3
-author: "Christopher Parks"
-maintainer: "christopher.daniel.parks@gmail.com"
-copyright: "2020 Christopher Parks"
+author: "Evan Borden"
+maintainer: "evan@evan-borden.com"
+copyright: "2020 Evan Borden"
 
 extra-source-files:
 - README.md

@@ -2,6 +2,8 @@
 
 Solutions for [Advent of Code 2020] in [Haskell]
 
+Skeleton forked from: https://github.com/cdparks/advent2020
+
 ## Help
 
 Run `make` without a target to show help
