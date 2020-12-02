@@ -9,9 +9,11 @@ import qualified Advent.Day1 as Day1
 main :: IO ()
 main = do
   day <- parseDay
-  _part <- parsePart
+  part <- parsePart
   case day of
-    1 -> Day1.main
+    1 -> case part of
+      Part1 -> Day1.part1
+      Part2 -> Day1.part2
     _
       | day <= 25 -> usage "Day not implemented yet"
       | otherwise -> usage "Day out of range"
