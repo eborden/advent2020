@@ -58,7 +58,7 @@ data Policy = Policy
 
 readEntries :: IO (Either String [Entry])
 readEntries =
-    parseOnly (parseEntry `sepBy` endOfLine) . pack <$> getContents
+    parseOnly (parseEntry `sepBy` endOfLine) <$> getContents
 
 parseEntry :: Parser Entry
 parseEntry = Entry

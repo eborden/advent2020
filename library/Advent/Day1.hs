@@ -16,7 +16,7 @@ part2 = print . product . find2020 . triads =<< readInts
 
 -- Can fail with read and holds everything in memory
 readInts :: IO [Int]
-readInts = fmap (read @Int . unpack) . lines . pack <$> getContents
+readInts = fmap (read @Int . unpack) . lines <$> getContents
 
 find2020 :: [[Int]] -> [Int]
 find2020 =  head . dropWhile ((/= 2020) . sum)
@@ -35,3 +35,16 @@ triads xs = do
     z <- drop 2 xs
     guard $ x /= y && y /= z && x /= z
     pure [x, y, z]
+
+groupings :: Eq a => Int -> [a] -> [[a]]
+groupings n = extend 0 []
+ where
+    extend :: Eq a => Int -> [a] -> [a] -> [[a]]
+    extend i acc xs
+        | i < n && null xs = []
+        | i >= n = pure acc
+        | otherwise = do
+            x <- drop n xs
+            if x `elem` acc
+                then extend i acc (drop 1 xs)
+                else extend (succ i) (x:acc) (drop 1 xs)
