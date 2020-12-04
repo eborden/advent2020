@@ -2,6 +2,7 @@ module Advent.Day3 where
 
 import Advent.Prelude
 import Data.Attoparsec.Text
+    (many1, sepBy, char, endOfLine, parseOnly, Parser)
 import Data.List (tail)
 import Safe (headMay, tailMay)
 import Control.Arrow ((>>>))
