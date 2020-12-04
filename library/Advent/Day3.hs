@@ -4,11 +4,12 @@ import Advent.Prelude
 import Data.Attoparsec.Text
 import Data.List (tail)
 import Safe (headMay, tailMay)
+import Control.Arrow ((>>>))
 
 part1 :: IO ()
 part1 = do
     position <- either error toPosition . parseOnly parseMap <$> getContents
-    let keys = search (down . right . right . right) position
+    let keys = search (right >>> right >>> right >>> down) position
     print . length $ filter (== Tree) keys
 
 part2 :: IO ()
@@ -18,11 +19,11 @@ part2 = do
     print . product $ length . filter (== Tree) <$> results
   where
     paths =
-        [ down . right
-        , down . right . right . right
-        , down . right . right . right . right . right
-        , down . right . right . right . right . right . right . right
-        , down <=< down . right
+        [ right >>> down
+        , right >>> right >>> right >>> down
+        , right >>> right >>> right >>> right >>> right >>> down
+        , right >>> right >>> right >>> right >>> right >>> right >>> right >>> down
+        , right >>> down >=> down
         ]
 
 data Key = Tree | Open
