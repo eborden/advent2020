@@ -15,7 +15,7 @@ part2 :: IO ()
 part2 = do 
     position <- either error toPosition . parseOnly parseMap <$> getContents
     let results = ($ position) . search <$> paths
-    print $ length . filter (== Tree) <$> results
+    print . product $ length . filter (== Tree) <$> results
   where
     paths =
         [ down . right
