@@ -4,7 +4,7 @@ module Advent.Prelude
   )
 where
 
-import Prelude as X hiding (head, init, last, lines, tail, unlines, unwords, words, (!!), getContents)
+import Prelude as X hiding (head, init, last, lines, tail, unlines, unwords, words, (!!), getContents, putStrLn)
 
 import Control.Applicative as X
 import Control.Monad as X
@@ -29,7 +29,7 @@ import Data.Maybe as X
 import Data.Proxy as X (Proxy(..))
 import Data.Set as X (Set)
 import Data.Text as X (Text, lines, pack, unlines, unpack, unwords, words)
-import Data.Text.IO as X (getContents)
+import Data.Text.IO as X (getContents, putStrLn)
 import Data.Time.Clock as X
 import Data.Traversable as X
 import Data.Vector as X (Vector)
@@ -39,7 +39,7 @@ import Numeric.Natural as X
 import System.Environment as X
 import System.Exit as X
 import System.FilePath as X
-import System.IO as X hiding (getContents)
+import System.IO as X hiding (getContents, putStrLn)
 import Text.Read as X (readMaybe)
 import UnliftIO.Directory as X
 import UnliftIO.Exception as X
