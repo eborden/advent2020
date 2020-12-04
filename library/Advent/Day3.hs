@@ -3,7 +3,7 @@ module Advent.Day3 where
 import Advent.Prelude
 import Data.Attoparsec.Text
     (many1, sepBy, char, endOfLine, parseOnly, Parser)
-import Data.List (tail)
+import Data.List (tail, unfoldr)
 import Safe (headMay, tailMay)
 import Control.Arrow ((>>>))
 
@@ -43,11 +43,11 @@ parseKey = open <|> tree
         tree = Tree <$ char '#'
 
 search :: (Position a -> Maybe (Position a)) -> Position a -> [a]
-search move = go [] 
+search move = unfoldr go
     where
-        go acc source = case move source of
-            Nothing -> acc
-            Just newSource -> go (position newSource:acc) newSource
+        go x =
+            let next = move x
+            in (,) <$> (position <$> next) <*> next
 
 data Position a = Position 
     { position :: a
