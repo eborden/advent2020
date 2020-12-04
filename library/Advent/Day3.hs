@@ -43,11 +43,9 @@ parseKey = open <|> tree
         tree = Tree <$ char '#'
 
 search :: (Position a -> Maybe (Position a)) -> Position a -> [a]
-search move = unfoldr go
-    where
-        go x =
-            let next = move x
-            in (,) <$> (position <$> next) <*> next
+search move = unfoldr $ \x ->
+    let next = move x
+    in (,) <$> (position <$> next) <*> next
 
 data Position a = Position 
     { position :: a
